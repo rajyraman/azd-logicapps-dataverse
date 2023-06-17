@@ -1,0 +1,9 @@
+{
+    "azureLogicAppsStandard.deploySubpath": "src",
+    "azureLogicAppsStandard.projectLanguage": "JavaScript",
+    "azureLogicAppsStandard.projectRuntime": "~4",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.suppressProject": true,
+    "azureLogicAppsStandard.preDeployTask": "publish",
+    "azureLogicAppsStandard.pickProcessTimeout": 120
+}

@@ -1,0 +1,6 @@
+{
+  "environmentUrl": {
+    "type": "String",
+    "value": "@appsetting('DATAVERSE_URL')"
+  }
+}

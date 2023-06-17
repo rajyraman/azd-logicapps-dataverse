@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "ms-azuretools.vscode-azurefunctions",
+    "ms-dotnettools.csharp",
+    "ms-azuretools.azure-dev",
+    "ms-azuretools.vscode-azurelogicapps",
+    "ms-azuretools.vscode-bicep",
+    "ms-vscode.azure-account",
+    "ms-azuretools.vscode-azureapiconnections",
+    "ms-azuretools.vscode-azureresourcegroups",
+    "azurite.azurite",
+    "ms-vscode-remote.remote-containers"
+  ]
+}
