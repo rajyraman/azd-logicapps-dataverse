@@ -38,6 +38,6 @@ To run and test the Logic Apps Standard inside VSCode, you'll also need to creat
     "FUNCTIONS_WORKER_RUNTIME": "node",
     "WORKFLOWS_RESOURCE_GROUP_NAME": "rg-azd-logicapps-dataverse",
     "WORKFLOWS_LOCATION_NAME": "australiasoutheast",
-    "DATAVERSE_URL": "https://environment.crm.dynamics.com
+    "DATAVERSE_URL": "https://environment.crm.dynamics.com"
 }
 ```
