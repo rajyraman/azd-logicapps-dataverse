@@ -19,14 +19,19 @@ param appServicePlanName string = ''
 param logAnalyticsName string = ''
 param resourceGroupName string = ''
 param storageAccountName string = ''
+param vNetName string = ''
 
-@description('ApplicationId for the App Registration')
+@description('ApplicationId for the App Registration used to connect with Dataverse')
 param applicationId string
 
 @secure()
+@description('Secret for the App Registration used to connect with Dataverse')
 param applicationSecret string
 
+@description('Base URL for the Dataverse environment')
 param dataverseUrl string
+
+param allowedLocations string = 'australiaeast,australiasoutheast'
 
 var abbrs = loadJsonContent('./abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
@@ -37,6 +42,28 @@ resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: !empty(resourceGroupName) ? resourceGroupName : '${abbrs.resourcesResourceGroups}${environmentName}'
   location: location
   tags: tags
+}
+
+module vnet 'core/network/vnet.bicep' = {
+  name: 'vnet'
+  scope: rg
+  params: {
+    name: !empty(vNetName) ? vNetName : '${abbrs.networkVirtualNetworks}${resourceToken}'
+    location: location
+    tags: tags
+    allowedLocations: split(allowedLocations, ',')
+  }
+}
+// Backing storage for Azure functions backend API
+module storage './core/storage/storage-account.bicep' = {
+  name: 'storage'
+  scope: rg
+  params: {
+    name: !empty(storageAccountName) ? storageAccountName : '${abbrs.storageStorageAccounts}${resourceToken}'
+    location: location
+    tags: tags
+    subnet: vnet.outputs.logicAppsSubnet
+  }
 }
 
 // Create an App Service Plan to group applications under the same payment plan and SKU
@@ -53,17 +80,6 @@ module appServicePlan './core/host/appserviceplan.bicep' = {
       tier: 'WorkflowStandard'
       size: 'WS1'
     }
-  }
-}
-
-// Backing storage for Azure functions backend API
-module storage './core/storage/storage-account.bicep' = {
-  name: 'storage'
-  scope: rg
-  params: {
-    name: !empty(storageAccountName) ? storageAccountName : '${abbrs.storageStorageAccounts}${resourceToken}'
-    location: location
-    tags: tags
   }
 }
 
@@ -96,7 +112,7 @@ module functions 'core/host/functions.bicep' = {
   name: 'logic-app'
   scope: rg
   params: {
-    name: '${abbrs.webSitesFunctions}${environmentName}-${resourceToken}'
+    name: '${abbrs.logicWorkflows}${environmentName}-${resourceToken}'
     location: location
     appServicePlanId: appServicePlan.outputs.id
     storageAccountName: storage.outputs.name
@@ -105,6 +121,7 @@ module functions 'core/host/functions.bicep' = {
     applicationId: applicationId
     dataverseConnectionRuntimeUrl: dataverseConnection.outputs.dataverseConnectionRuntimeUrl
     dataverseUrl: dataverseUrl
+    subnetId: vnet.outputs.logicAppsSubnet
   }
 }
 module accessPolicy 'core/workflows/access.bicep' = {

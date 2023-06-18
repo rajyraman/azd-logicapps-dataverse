@@ -23,6 +23,7 @@ param ftpsState string = 'FtpsOnly'
 param healthCheckPath string = ''
 @description('ApplicationId for the App Registration')
 param applicationId string
+param subnetId string
 
 resource appService 'Microsoft.Web/sites@2022-03-01' = {
   name: name
@@ -47,6 +48,9 @@ resource appService 'Microsoft.Web/sites@2022-03-01' = {
     }
     clientAffinityEnabled: clientAffinityEnabled
     httpsOnly: true
+    vnetRouteAllEnabled: true
+    vnetContentShareEnabled: true
+    virtualNetworkSubnetId: subnetId
   }
 
   identity: { type: 'SystemAssigned' }

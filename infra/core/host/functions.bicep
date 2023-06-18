@@ -23,6 +23,7 @@ param use32BitWorkerProcess bool = false
 param applicationId string
 param dataverseConnectionRuntimeUrl string
 param dataverseUrl string
+param subnetId string
 module functions 'appservice.bicep' = {
   name: '${name}-functions'
   params: {
@@ -47,6 +48,7 @@ module functions 'appservice.bicep' = {
     scmDoBuildDuringDeployment: scmDoBuildDuringDeployment
     use32BitWorkerProcess: use32BitWorkerProcess
     applicationId: applicationId
+    subnetId: subnetId
   }
 }
 
