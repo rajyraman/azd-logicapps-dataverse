@@ -77,7 +77,7 @@ module config 'appservice-appsettings.bicep' = if (!empty(appSettings)) {
         ENABLE_ORYX_BUILD: string(enableOryxBuild)
         FUNCTIONS_EXTENSION_VERSION: '~4'
         FUNCTIONS_WORKER_RUNTIME: 'node'
-        WEBSITE_NODE_DEFAULT_VERSION: '~16'
+        WEBSITE_NODE_DEFAULT_VERSION: '~18'
         AzureFunctionsJobHost__extensionBundle__id: 'Microsoft.Azure.Functions.ExtensionBundle.Workflows'
         AzureFunctionsJobHost__extensionBundle__version: '[1.*, 2.0.0)'
         APP_KIND: 'workflowApp'
