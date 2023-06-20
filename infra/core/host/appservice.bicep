@@ -23,6 +23,7 @@ param ftpsState string = 'FtpsOnly'
 param healthCheckPath string = ''
 @description('ApplicationId for the App Registration')
 param applicationId string
+param subnetId string
 
 resource appService 'Microsoft.Web/sites@2022-03-01' = {
   name: name
@@ -47,6 +48,9 @@ resource appService 'Microsoft.Web/sites@2022-03-01' = {
     }
     clientAffinityEnabled: clientAffinityEnabled
     httpsOnly: true
+    vnetRouteAllEnabled: true
+    vnetContentShareEnabled: true
+    virtualNetworkSubnetId: subnetId
   }
 
   identity: { type: 'SystemAssigned' }
@@ -80,6 +84,8 @@ module config 'appservice-appsettings.bicep' = if (!empty(appSettings)) {
         WORKFLOWS_SUBSCRIPTION_ID: subscription().subscriptionId
         WORKFLOWS_LOCATION_NAME: location
         WORKFLOWS_RESOURCE_GROUP_NAME: resourceGroup().name
+        WEBSITE_CONTENTOVERVNET: 1
+        WEBSITE_DNS_SERVER: '168.63.129.16'
       },
       !empty(applicationInsightsName) ? { APPLICATIONINSIGHTS_CONNECTION_STRING: applicationInsights.properties.ConnectionString } : {})
   }

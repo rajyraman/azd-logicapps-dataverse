@@ -18,14 +18,12 @@ param deleteRetentionPolicy object = {}
 param dnsEndpointType string = 'Standard'
 param kind string = 'StorageV2'
 param minimumTlsVersion string = 'TLS1_2'
-// param networkAcls object = {
-//   bypass: 'AzureServices'
-//   defaultAction: 'Allow'
-// }
 
 @allowed([ 'Enabled', 'Disabled' ])
 param publicNetworkAccess string = 'Enabled'
 param sku object = { name: 'Standard_LRS' }
+
+param subnet string
 
 resource storage 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   name: name
@@ -43,13 +41,13 @@ resource storage 'Microsoft.Storage/storageAccounts@2022-05-01' = {
     minimumTlsVersion: minimumTlsVersion
     networkAcls: {
       bypass: 'AzureServices'
-      defaultAction: 'Allow'
-      // resourceAccessRules: [
-      //   {
-      //     tenantId: subscription().tenantId
-      //     resourceId: '${resourceGroup().id}/providers/Microsoft.Logic/workflows/*'
-      //   }
-      // ]
+      defaultAction: 'Deny'
+      virtualNetworkRules: [
+        {
+          id: subnet
+          action: 'Allow'
+        }
+      ]
     }
     publicNetworkAccess: publicNetworkAccess
   }

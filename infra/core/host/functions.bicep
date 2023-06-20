@@ -23,6 +23,7 @@ param use32BitWorkerProcess bool = false
 param applicationId string
 param dataverseConnectionRuntimeUrl string
 param dataverseUrl string
+param subnetId string
 module functions 'appservice.bicep' = {
   name: '${name}-functions'
   params: {
@@ -33,8 +34,6 @@ module functions 'appservice.bicep' = {
     appServicePlanId: appServicePlanId
     appSettings: union(appSettings, {
         AzureWebJobsStorage: 'DefaultEndpointsProtocol=https;AccountName=${storage.name};AccountKey=${storage.listKeys().keys[0].value};EndpointSuffix=${environment().suffixes.storage}'
-        WEBSITE_CONTENTAZUREFILECONNECTIONSTRING: 'DefaultEndpointsProtocol=https;AccountName=${storage.name};AccountKey=${storage.listKeys().keys[0].value};EndpointSuffix=${environment().suffixes.storage}'
-        WEBSITE_CONTENTSHARE: name
         DATAVERSE_CONNECTION_RUNTIME_URL: dataverseConnectionRuntimeUrl
         DATAVERSE_URL: dataverseUrl
       })
@@ -47,6 +46,7 @@ module functions 'appservice.bicep' = {
     scmDoBuildDuringDeployment: scmDoBuildDuringDeployment
     use32BitWorkerProcess: use32BitWorkerProcess
     applicationId: applicationId
+    subnetId: subnetId
   }
 }
 

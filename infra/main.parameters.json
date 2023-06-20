@@ -16,6 +16,9 @@
     },
     "dataverseUrl": {
       "value": "${DATAVERSE_URL}"
+    },
+    "allowedLocations": {
+      "value": "${ALLOWED_LOCATIONS}"
     }
   }
 }
