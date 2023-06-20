@@ -28,6 +28,18 @@ DATAVERSE_APPLICATION_SECRET="[secret]"
 DATAVERSE_URL="https://environment.crm.dynamics.com"
 ```
 
+You can create a new App Registration using az CLI, Azure Portal or even Power Platform CLI. Power Platform CLI method is the easiest.
+
+![Create Service Principal](images/create-service-principal.png)
+
+You also need to add a new scope. In my registration I have called this scope _LogicApps.Run_
+
+![API Scope](images/api_scope.png)
+
+One more step is to audience claim to JWT Access Token
+
+![Audience Token](images/audience_token.png)
+
 To run and test the Logic Apps Standard inside VSCode, you'll also need to create local.settings.json file inside [src](./src/) folder.
 
 ```json
@@ -41,3 +53,9 @@ To run and test the Logic Apps Standard inside VSCode, you'll also need to creat
     "DATAVERSE_URL": "https://environment.crm.dynamics.com"
 }
 ```
+
+### Running Logic App from Postman
+
+Make a note of the trigger URL from the Logic Apps page in Azure Portal and strip out the SAS token from the URL because we need to run the Logic Apps using the Bearer token. Below is how you can run this on Postman. Make sure that you have the right scope, Authorisation URL and Access Token URL
+
+![Postman](images/postman.png)
