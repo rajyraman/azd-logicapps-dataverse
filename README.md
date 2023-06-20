@@ -28,7 +28,7 @@ DATAVERSE_APPLICATION_SECRET="[secret]"
 DATAVERSE_URL="https://environment.crm.dynamics.com"
 ```
 
-You can create a new App Registration using az CLI, Azure Portal or even Power Platform CLI. Power Platform CLI method is the easiest.
+You can create a new App Registration using az CLI, Azure Portal or even Power Platform CLI. Power Platform CLI method is the easiest. After running the pac command confirm that the Service Principal can access the environment referred in the config and has the right security role.
 
 ![Create Service Principal](images/create-service-principal.png)
 
