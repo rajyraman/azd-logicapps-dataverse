@@ -96,7 +96,7 @@ module functions 'core/host/functions.bicep' = {
   name: 'logic-app'
   scope: rg
   params: {
-    name: '${abbrs.webSitesFunctions}${environmentName}-${resourceToken}'
+    name: '${abbrs.logicWorkflows}${environmentName}-${resourceToken}'
     location: location
     appServicePlanId: appServicePlan.outputs.id
     storageAccountName: storage.outputs.name
