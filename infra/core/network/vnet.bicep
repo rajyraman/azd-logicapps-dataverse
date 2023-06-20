@@ -23,9 +23,6 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
             {
               locations: allowedLocations
               service: 'Microsoft.Storage'
-            }, {
-              locations: allowedLocations
-              service: 'Microsoft.Web'
             }
           ]
           delegations: [

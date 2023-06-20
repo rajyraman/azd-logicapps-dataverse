@@ -84,6 +84,8 @@ module config 'appservice-appsettings.bicep' = if (!empty(appSettings)) {
         WORKFLOWS_SUBSCRIPTION_ID: subscription().subscriptionId
         WORKFLOWS_LOCATION_NAME: location
         WORKFLOWS_RESOURCE_GROUP_NAME: resourceGroup().name
+        WEBSITE_CONTENTOVERVNET: 1
+        WEBSITE_DNS_SERVER: '168.63.129.16'
       },
       !empty(applicationInsightsName) ? { APPLICATIONINSIGHTS_CONNECTION_STRING: applicationInsights.properties.ConnectionString } : {})
   }
