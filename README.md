@@ -72,6 +72,9 @@ Make a note of the trigger URL from the Logic Apps page in Azure Portal and stri
 
 ![Postman](images/postman.png)
 
+Below is the body of the request that has to be sent to the Logic App.
+![Postman](images/postman_body.png)
+
 ### Architecture
 
 ![Architecture](images/architecture.png)
