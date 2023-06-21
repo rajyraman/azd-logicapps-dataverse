@@ -15,20 +15,32 @@ The following prerequisites are required to use this application. Please ensure 
 - [Node.js with npm (16.13.1+)](https://nodejs.org/)
 
 ### Quickstart
+The first step is to download the template on your local machine. For this you need to run the command below.
 
-The fastest way for you to get this application up and running on Azure is to use the `azd up` command. This single command will create and configure all necessary Azure resources - including access policies for Logic Apps to use the Dataverse service connection.
+`azd init -t rajyraman/azd-logicapps-dataverse`
 
-Before running `azd up` create a .env file inside [azd-logicapps-dataverse](./.azure/azd-logicapps-dataverse/) folder. Example below
+Then create a new environment using the command below.
+
+`azd env new azd-logicapps-dataverse-dev`
+
+Now go the `.env` file in the environment folder and create the values for the parameters.
+
+![Environment file](images/environments.png)
+
+These values will be used in the bicep files. Example file below.
 
 ```
-AZURE_ENV_NAME="azd-logicapps-dataverse"
+ALLOWED_LOCATIONS="australiaeast,australiasoutheast"
+AZURE_ENV_NAME="azd-logicapps-dataverse-dev"
 AZURE_LOCATION="australiasoutheast"
-DATAVERSE_APPLICATION_ID="[applicationid]"
-DATAVERSE_APPLICATION_SECRET="[secret]"
+DATAVERSE_APPLICATION_ID="d3b50372-d7d0-497e-b783-8987250b743d"
+DATAVERSE_APPLICATION_SECRET="abcdefgh"
 DATAVERSE_URL="https://environment.crm.dynamics.com"
 ```
 
-You can create a new App Registration using az CLI, Azure Portal or even Power Platform CLI. Power Platform CLI method is the easiest. After running the pac command confirm that the Service Principal can access the environment referred in the config and has the right security role.
+Now that you have everything ready you can start provisioning the resources using `azd provision`. Another option is to provision resource and deploy Logic Apps code using `azd up` command. These commands will create and configure all necessary Azure resources - including access policies for Logic Apps to use the Dataverse service connection.
+
+You can create a new App Registration using az CLI, Azure Portal or even Power Platform CLI. Power Platform CLI method is the easiest. After running the pac command confirm you will need to add the Service Principal to the environment and grant the right security roles so that it can access the environment referred in the env file.
 
 ![Create Service Principal](images/create-service-principal.png)
 
@@ -59,3 +71,12 @@ To run and test the Logic Apps Standard inside VSCode, you'll also need to creat
 Make a note of the trigger URL from the Logic Apps page in Azure Portal and strip out the SAS token from the URL because we need to run the Logic Apps using the Bearer token. Below is how you can run this on Postman. Make sure that you have the right scope, Authorisation URL and Access Token URL
 
 ![Postman](images/postman.png)
+
+### Architecture
+
+![Architecture](images/architecture.png)
+
+### References
+1. https://github.com/pamelafox/fastapi-azure-function-apim
+2. https://github.com/Azure-Samples/function-app-arm-templates
+3. https://github.com/marnixcox/logicapp-standard-func
