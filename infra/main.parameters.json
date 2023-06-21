@@ -4,21 +4,6 @@
   "parameters": {
     "environmentName": {
       "value": "${AZURE_ENV_NAME}"
-    },
-    "location": {
-      "value": "${AZURE_LOCATION}"
-    },
-    "applicationId": {
-      "value": "${DATAVERSE_APPLICATION_ID}"
-    },
-    "applicationSecret": {
-      "value": "${DATAVERSE_APPLICATION_SECRET}"
-    },
-    "dataverseUrl": {
-      "value": "${DATAVERSE_URL}"
-    },
-    "allowedLocations": {
-      "value": "${ALLOWED_LOCATIONS}"
     }
   }
 }
