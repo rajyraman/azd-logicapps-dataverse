@@ -80,3 +80,5 @@ Make a note of the trigger URL from the Logic Apps page in Azure Portal and stri
 1. https://github.com/pamelafox/fastapi-azure-function-apim
 2. https://github.com/Azure-Samples/function-app-arm-templates
 3. https://github.com/marnixcox/logicapp-standard-func
+4. https://techcommunity.microsoft.com/t5/integrations-on-azure-blog/trigger-workflows-in-standard-logic-apps-with-easy-auth/ba-p/3207378
+5. https://www.youtube.com/watch?v=tawHXz6qGQI
