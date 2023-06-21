@@ -40,11 +40,11 @@ DATAVERSE_URL="https://environment.crm.dynamics.com"
 
 Now that you have everything ready you can start provisioning the resources using `azd provision`. Another option is to provision resource and deploy Logic Apps code using `azd up` command. These commands will create and configure all necessary Azure resources - including access policies for Logic Apps to use the Dataverse service connection.
 
-You can create a new App Registration using az CLI, Azure Portal or even Power Platform CLI. Power Platform CLI method is the easiest. After running the pac command confirm you will need to add the Service Principal to the environment and grant the right security roles so that it can access the environment referred in the env file.
+You can create a new App Registration using az CLI, Azure Portal or even Power Platform CLI. Power Platform CLI method is the easiest. The App Registration is used only for Easy Auth to lock down the Logic Apps trigger. The Service Principal of Logic Apps has to be added as an Application User to the Dataverse environment because the connection to Dataverse from Logic Apps is using the Logic Apps's System Assigned Managed Identity.
 
 ![Create Service Principal](images/create-service-principal.png)
 
-You also need to add a new scope. In my registration I have called this scope _LogicApps.Run_
+You also need to add a new scope for the created App Registration that will be used for EasyAuth. In my registration I have called this scope _LogicApps.Run_
 
 ![API Scope](images/api_scope.png)
 
