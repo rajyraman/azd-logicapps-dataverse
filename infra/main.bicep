@@ -31,7 +31,8 @@ param applicationSecret string
 @description('Base URL for the Dataverse environment')
 param dataverseUrl string
 
-param allowedLocations string = 'australiaeast,australiasoutheast'
+@description('Allowed locations for service endpoint in VNet e.g. australiaeast, australiasoutheast')
+param allowedLocations string
 
 var abbrs = loadJsonContent('./abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
