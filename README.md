@@ -14,6 +14,15 @@ The following prerequisites are required to use this application. Please ensure 
 - [Azure Functions Core Tools (4+)](https://docs.microsoft.com/azure/azure-functions/functions-run-local)
 - [Node.js with npm (16.13.1+)](https://nodejs.org/)
 
+### Checklist
+- [ ] Create new App Registration using `pac admin create-service-principal`
+- [ ] Note down the Application Id and Secret for the App Registration
+- [ ] Add the new App Registration as an Application User in Dataverse Environment and assign correct security role
+- [ ] Run `azd init -t rajyraman/azd-logicapps-dataverse`
+- [ ] Run `azd env new [ENV NAME]`
+- [ ] Fill values for ALLOWED_LOCATIONS, DATAVERSE_APPLICATION_ID, DATAVERSE_APPLICATION_SECRET and DATAVERSE_URL in the .env file
+- [ ] Run `azd provision` and `azd deploy` or just `azd up`
+
 ### Quickstart
 The first step is to download the template on your local machine. For this you need to run the command below.
 
