@@ -14,6 +14,15 @@ The following prerequisites are required to use this application. Please ensure 
 - [Azure Functions Core Tools (4+)](https://docs.microsoft.com/azure/azure-functions/functions-run-local)
 - [Node.js with npm (16.13.1+)](https://nodejs.org/)
 
+### Checklist
+- [ ] Create new App Registration using `pac admin create-service-principal`
+- [ ] Note down the Application Id and Secret for the App Registration
+- [ ] Add the new App Registration as an Application User in Dataverse Environment and assign correct security role
+- [ ] Run `azd init -t rajyraman/azd-logicapps-dataverse`
+- [ ] Run `azd env new [ENV NAME]`
+- [ ] Fill values for ALLOWED_LOCATIONS, DATAVERSE_APPLICATION_ID, DATAVERSE_APPLICATION_SECRET and DATAVERSE_URL in the .env file
+- [ ] Run `azd provision` and `azd deploy` or just `azd up`
+
 ### Quickstart
 The first step is to download the template on your local machine. For this you need to run the command below.
 
@@ -40,7 +49,7 @@ DATAVERSE_URL="https://environment.crm.dynamics.com"
 
 Now that you have everything ready you can start provisioning the resources using `azd provision`. Another option is to provision resource and deploy Logic Apps code using `azd up` command. These commands will create and configure all necessary Azure resources - including access policies for Logic Apps to use the Dataverse service connection.
 
-You can create a new App Registration using az CLI, Azure Portal or even Power Platform CLI. Power Platform CLI method is the easiest. The App Registration is used only for Easy Auth to lock down the Logic Apps trigger. The Service Principal of Logic Apps has to be added as an Application User to the Dataverse environment because the connection to Dataverse from Logic Apps is using the Logic Apps's System Assigned Managed Identity.
+You can create a new App Registration using az CLI, Azure Portal or even Power Platform CLI. Power Platform CLI method is the easiest. The App Registration can used for both Easy Auth token acquistion to lock down the Logic Apps trigger and also connect with Dataverse. The new App Registration has to be added as an Application User to the Dataverse environment because the API connection is using the ApplicationId/Secret to connect with Dataverse.
 
 ![Create Service Principal](images/create-service-principal.png)
 
