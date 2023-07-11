@@ -28,9 +28,13 @@ The first step is to download the template on your local machine. For this you n
 
 `azd init -t rajyraman/azd-logicapps-dataverse`
 
-Then create a new environment using the command below.
+You can choose the environment name here.
 
-`azd env new azd-logicapps-dataverse-dev`
+![Environment name](images/azd-init.png)
+
+You can also create a new environment using the command below.
+
+`azd env new azd-logicapps-dataverse-test`
 
 Now go the `.env` file in the environment folder and create the values for the parameters.
 
