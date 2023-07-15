@@ -18,8 +18,3 @@ FROM mcr.microsoft.com/azure-functions/dotnet:4-dotnet6-core-tools
 # RUN apt-get update && curl -ssL https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/common-debian.sh -o /tmp/common-script.sh \
 #     && /bin/bash /tmp/common-script.sh "$INSTALL_ZSH" "$USERNAME" "$USER_UID" "$USER_GID" \
 #     && rm /tmp/common-script.sh
-
-RUN export DEBIAN_FRONTEND=noninteractive \
-     && apt-get update && apt-get install -y xdg-utils \
-     && apt-get clean -y && rm -rf /var/lib/apt/lists/*
-RUN curl -fsSL https://aka.ms/install-azd.sh | bash
