@@ -18,7 +18,8 @@
 				"azurite.azurite",
 				"ms-azuretools.vscode-azureapiconnections",
 				"ms-azuretools.vscode-azureresourcegroups",
-				"ms-azuretools.vscode-azurelogicapps"
+				"ms-azuretools.vscode-azurelogicapps",
+				"microsoft-IsvExpTools.powerplatform-vscode"
 			]
 		}
 	},
