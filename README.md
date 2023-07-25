@@ -14,6 +14,9 @@ The following prerequisites are required to use this application. Please ensure 
 - [Azure Functions Core Tools (4+)](https://docs.microsoft.com/azure/azure-functions/functions-run-local)
 - [Node.js with npm (16.13.1+)](https://nodejs.org/)
 
+### Demo
+You can watch https://www.youtube.com/watch?v=BjI4OlNKfh4 for the demo.
+
 ### Checklist
 - [ ] Create new App Registration using `pac admin create-service-principal`
 - [ ] Note down the Application Id and Secret for the App Registration
